@@ -1,23 +1,7 @@
 import React from 'react';
 import { stockDataHeader, CategoryData } from '../../../dataSet';
-/*
-function Category({data}) {
-        //console.log(data);        
-        return(
-                <div>
-                        {data.map((el) => {
-                                return(
-                                    <p>
-                                        <button className='m-2'>{el}</button>
-                                       
-                                
-                                    </p>
-                                );
-                        })}
-                </div>
-        );
-    }
-*/
+import RawStockBlock from '../../../components/rawStockBlock/rawStockBlock';
+import { Link } from 'react-router-dom';
 function Category({ data }) {
   return (
     <div>
@@ -27,10 +11,11 @@ function Category({ data }) {
 
         return (
           <p key={el}>
+            <Link to={`stockDetail/${el}`}>{el}
             <button className='m-2'>
-              {el}
               {matchingStock && <span> 가격: {matchingStock.price}</span>}
             </button>
+            </Link>
           </p>
         );
       })}

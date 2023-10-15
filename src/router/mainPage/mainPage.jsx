@@ -74,19 +74,18 @@ export default function MainPage() {
           </div>
         </div>
       </div>
-      <div className="w-full border border-black rounded-2xl flex gap-4 mt-8  ">
-      <div className="category">
+      <div className="w-full border border-black rounded-2xl flex gap-4 mt-8">
+        <div className="category">
           <p className="m-4 text-2xl font-bold">카테고리</p>
           <div className="flex gap-4 m-2">
-            <button className={`border-solid ${(selCategory==="recentUpdate"?"font-bold":"nomal")}`} id="recentUpdate" onClick={(e)=>callCategory(e)}>최근에 등록된</button>
-            <button className={`border-solid ${(selCategory==="mostPopular"?"font-bold":"nomal")}`}id="mostPopular" onClick={(e) => callCategory(e)}>거래량 많은 </button>
-            <button className={`border-solid ${(selCategory==="ipo"?"font-bold":"nomal")}`}id="ipo" onClick={(e) => callCategory(e)}>IPO를 앞둔</button>
-            <button className={`border-solid ${(selCategory==="dividend"?"font-bold":"nomal")}`}id="dividend" onClick={(e) => callCategory(e)}>배당일을 앞둔</button>
-            <button className={`border-solid ${(selCategory==="marketCap"?"font-bold":"nomal")}`}id="marketCap" onClick={(e) => callCategory(e)}>시가총액이 큰</button> 
+            <button className={`border-solid ${selCategory==="recentUpdate"?"font-bold":"nomal"} hover:bg-sky-100`} id="recentUpdate" onClick={(e)=>callCategory(e)}>최근에 등록된</button>
+            <button className={`border-solid ${selCategory==="mostPopular"?"font-bold":"nomal"} hover:bg-sky-100`} id="mostPopular" onClick={(e) => callCategory(e)}>거래량 많은</button>
+            <button className={`border-solid ${selCategory==="ipo"?"font-bold":"nomal"} hover:bg-sky-100`} id="ipo" onClick={(e) => callCategory(e)}>IPO를 앞둔</button>
+            <button className={`border-solid ${selCategory==="dividend"?"font-bold":"nomal"} hover:bg-sky-100`} id="dividend" onClick={(e) => callCategory(e)}>배당일을 앞둔</button>
+            <button className={`border-solid ${selCategory==="marketCap"?"font-bold":"nomal"} hover:bg-sky-100`} id="marketCap" onClick={(e) => callCategory(e)}>시가총액이 큰</button> 
           </div>
           <Category data={stockData}></Category>
           {/*카테고리를 누르면 해당 카테고리에 맞는 STO를 보여줘야 함*/}
-          
         </div>
       </div>
     </div>
