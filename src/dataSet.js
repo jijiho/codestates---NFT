@@ -5,6 +5,7 @@ export const stockDataHeader = [
     price: 2455.12,
     percentage: 12,
     decreaseByWon: 17,
+    
   },
   {
     name: "세나무",
@@ -65,3 +66,10 @@ export const stockDataHeader = [
     decreaseByWon: 1137,
   },
 ];
+export const CategoryData =  {
+  recentUpdate: ["두나무", '세나무', '네나무'],
+  mostPopular: ['토스', '비바'],
+  ipo: ['오나무', '육나무'],
+  dividend:['칠나무', '팔나무','오나무'],
+  marketCap:['구나무', '십나무', '칠나무', '팔나무','오나무'],
+}
