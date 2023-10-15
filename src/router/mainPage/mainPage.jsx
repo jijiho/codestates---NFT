@@ -38,13 +38,7 @@ export default function MainPage() {
       <FlowChart></FlowChart>
 
 
-      <div className="flex gap-12 mt-12">
-        <SquareBlock stock={stockDataHeader[0]} />
-        <SquareBlock stock={stockDataHeader[1]} />
-        <SquareBlock stock={stockDataHeader[2]} />
-        <SquareBlock stock={stockDataHeader[3]} />
-        <SquareBlock stock={stockDataHeader[4]} />
-      </div>
+    
       <div className="w-full  flex gap-4 mt-8  ">
         <div className="w-8/12 border border-black px-6  rounded-2xl">
           <div className="text-2xl font-bold  pt-4 pb-3  ">
