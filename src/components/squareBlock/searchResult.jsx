@@ -2,7 +2,7 @@ import { stockDataHeader } from '../../dataSet';
 import { Link } from 'react-router-dom';
 const SearchResult = ({searchTxt}) => {
     return(
-        <div className="absolute bg-yellow-500 z-10 hover:z-50">
+        <div className="absolute bg-yellow-500 ">
             
                 {stockDataHeader.map((el)=>{
                     if(el.name.includes(searchTxt)&&searchTxt!==""){
