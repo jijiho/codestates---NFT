@@ -1,9 +1,36 @@
+import { useState } from "react";
 import RawStockBlock from "../../components/rawStockBlock/rawStockBlock";
 import SquareBlock from "../../components/squareBlock/squareBlock";
-import { stockDataHeader } from "../../dataSet";
+import { stockDataHeader, CategoryData } from "../../dataSet";
+import Category from "./component/categori";
 
 export default function MainPage() {
+  const [stockData, setStockData] = useState(CategoryData.ipo);
+  const callCategory = (e) => {
+    //console.log(e.target.id+"클릭됨")
+    if(e.target.id==="recentUpdate"){
+      setStockData(CategoryData.recentUpdate);
+      setSelCategory("recentUpdate");
+    } else if (e.target.id==="mostPopular"){
+      setStockData(CategoryData.mostPopular);
+      setSelCategory("mostPopular");
+    } else if (e.target.id==="ipo"){
+      setStockData(CategoryData.ipo);
+      setSelCategory("ipo");
+    }
+    else if (e.target.id==="dividend"){
+      setStockData(CategoryData.dividend);
+      setSelCategory("dividend");
+    }
+    else if (e.target.id==="marketCap"){
+      setStockData(CategoryData.marketCap);
+      setSelCategory("marketCap");
+    }
+  };
+  const [selCategory, setSelCategory] = useState("recentUpdate");
   const tenStock = stockDataHeader.slice(0, 9);
+  
+
   return (
     <div className="flex flex-col w-8/12 m-auto">
       <div className="flex gap-12 mt-12">
@@ -13,7 +40,6 @@ export default function MainPage() {
         <SquareBlock stock={stockDataHeader[3]} />
         <SquareBlock stock={stockDataHeader[4]} />
       </div>
-
       <div className="w-full  flex gap-4 mt-8  ">
         <div className="w-8/12 border border-black px-6  rounded-2xl">
           <div className="text-2xl font-bold  pt-7 pb-3  ">
@@ -46,6 +72,21 @@ export default function MainPage() {
               <div>주가수익률 :20$</div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="w-full border border-black rounded-2xl flex gap-4 mt-8  ">
+      <div className="category">
+          <p className="m-4 text-2xl font-bold">카테고리</p>
+          <div className="flex gap-4 m-2">
+            <button className={`border-solid ${(selCategory==="recentUpdate"?"font-bold":"nomal")}`} id="recentUpdate" onClick={(e)=>callCategory(e)}>최근에 등록된</button>
+            <button className={`border-solid ${(selCategory==="mostPopular"?"font-bold":"nomal")}`}id="mostPopular" onClick={(e) => callCategory(e)}>거래량 많은 </button>
+            <button className={`border-solid ${(selCategory==="ipo"?"font-bold":"nomal")}`}id="ipo" onClick={(e) => callCategory(e)}>IPO를 앞둔</button>
+            <button className={`border-solid ${(selCategory==="dividend"?"font-bold":"nomal")}`}id="dividend" onClick={(e) => callCategory(e)}>배당일을 앞둔</button>
+            <button className={`border-solid ${(selCategory==="marketCap"?"font-bold":"nomal")}`}id="marketCap" onClick={(e) => callCategory(e)}>시가총액이 큰</button> 
+          </div>
+          <Category data={stockData}></Category>
+          {/*카테고리를 누르면 해당 카테고리에 맞는 STO를 보여줘야 함*/}
+          
         </div>
       </div>
     </div>
