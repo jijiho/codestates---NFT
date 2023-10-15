@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 export default function RawStockBlock({ stockInfo }) {
-  console.log(stockInfo);
   return (
     <div>
       <Link
