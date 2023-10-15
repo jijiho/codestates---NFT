@@ -1,6 +1,5 @@
 import FlowChart from "../../components/flowChart/flowChart";
 import { useState } from "react";
-
 import RawStockBlock from "../../components/rawStockBlock/rawStockBlock";
 import SquareBlock from "../../components/squareBlock/squareBlock";
 import { stockDataHeader, CategoryData } from "../../dataSet";
@@ -34,7 +33,7 @@ export default function MainPage() {
   
 
   return (
-    <div className="flex flex-col w-8/12 m-auto">
+    <div className="flex flex-col w-8/12 m-auto ">
       <FlowChart></FlowChart>
 
 

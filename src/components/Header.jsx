@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
+import SearchResult from "./squareBlock/searchResult";
 export default function Header() {
+  const [search, setSearch] = useState("Search");
   return (
-    <div className=" border sticky border-b-black  w-screen">
+    <div className=" border sticky border-b-black  w-screen ">
       <div className="h-16 flex justify-around items-center">
         <div className="w-24 ">
           <Link to="/">
@@ -12,7 +14,12 @@ export default function Header() {
             />
           </Link>
         </div>
-        <div className="flex gap-8">
+        
+        <div className="flex gap-8 ">
+          <div>
+            <input type="text" placeholder="search" onChange={(e) => setSearch(e.target.value)} />
+            <SearchResult searchTxt={search} />
+          </div>
           <div>
             <Link to={"/aa"}>돋보기</Link>
           </div>

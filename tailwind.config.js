@@ -34,7 +34,9 @@ module.exports = {
             transform: "translateX(-200%)",
           },
         },
-      },
+      },zIndex:{
+        '-10':'-10',
+      }
       
     },
   },
