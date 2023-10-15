@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
 import { stockDataHeader } from '../../dataSet';
 import { Link } from 'react-router-dom';
 const SearchResult = ({searchTxt}) => {
     return(
-        <div className="absolute bg-yellow-500">
-            <p>
+        <div className="absolute bg-yellow-500 z-10 hover:z-50">
+            
                 {stockDataHeader.map((el)=>{
                     if(el.name.includes(searchTxt)&&searchTxt!==""){
                         return(
-                            <div>
+                            <div className="hover:bg-sky-100">
 
                                 <Link to={`stockDetail/${el.name}`}>
                                 {el.name}
@@ -18,7 +17,7 @@ const SearchResult = ({searchTxt}) => {
                         )
                     }
                 })}
-            </p>
+            
         </div>
     );
 };

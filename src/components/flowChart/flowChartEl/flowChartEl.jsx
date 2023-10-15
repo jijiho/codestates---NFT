@@ -5,7 +5,7 @@ export default function FlowChartEl({ stockInfo }) {
     <div className="w-52 px-8 ">
       <Link
         to={`stockDetail/${stockInfo.name}`}
-        className="flex h-12 rounded-md hover:bg-slate-200 hover:cursor-pointer "
+        className="flex h-12 rounded-md hover:bg-slate-200 hover:cursor-pointer"
       >
         <div className="flex flex-col justify-between">
           <div className="text-xl">{stockInfo.name}</div>

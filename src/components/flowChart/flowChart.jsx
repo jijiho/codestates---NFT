@@ -3,9 +3,9 @@ import { stockDataHeader } from "../../dataSet";
 
 export default function FlowChart() {
   return (
-    <div className="overflow-hidden pt-4  relative">
+    <div className="overflow-hidden pt-4">
       <div className="flex">
-        <div className="" ><ul className="-z-10 flex  animate-infiRoll1 ">
+        <div className="" ><ul className="flex  animate-infiRoll1 ">
           <li>
             <FlowChartEl stockInfo={stockDataHeader[0]}></FlowChartEl>
           </li>
@@ -37,7 +37,7 @@ export default function FlowChart() {
         </ul>
         </div>
         <div>
-        <ul className="-z-10 flex animate-infiRoll2 ">
+        <ul className="flex animate-infiRoll2 ">
           <li>
             <FlowChartEl stockInfo={stockDataHeader[0]}></FlowChartEl>
           </li>
@@ -66,7 +66,7 @@ export default function FlowChart() {
             <FlowChartEl stockInfo={stockDataHeader[8]}></FlowChartEl>
           </li>
           
-        </ul>
+       </ul>
       </div>
       </div>
     </div>

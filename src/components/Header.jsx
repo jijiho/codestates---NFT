@@ -4,7 +4,7 @@ import SearchResult from "./squareBlock/searchResult";
 export default function Header() {
   const [search, setSearch] = useState("Search");
   return (
-    <div className=" border sticky border-b-black  w-screen ">
+    <div className=" border sticky border-b-black  w-screen">
       <div className="h-16 flex justify-around items-center">
         <div className="w-24 ">
           <Link to="/">

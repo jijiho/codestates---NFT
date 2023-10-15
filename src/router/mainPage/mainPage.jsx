@@ -1,7 +1,6 @@
 import FlowChart from "../../components/flowChart/flowChart";
 import { useState } from "react";
 import RawStockBlock from "../../components/rawStockBlock/rawStockBlock";
-import SquareBlock from "../../components/squareBlock/squareBlock";
 import { stockDataHeader, CategoryData } from "../../dataSet";
 import Category from "./component/categori";
 
@@ -38,7 +37,7 @@ export default function MainPage() {
 
 
     
-      <div className="w-full  flex gap-4 mt-8  ">
+      <div className="w-full  flex gap-4 mt-8 ">
         <div className="w-8/12 border border-black px-6  rounded-2xl">
           <div className="text-2xl font-bold  pt-4 pb-3  ">
             <p className="">관심가질만한 종목들</p>
