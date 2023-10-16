@@ -5,6 +5,7 @@ export const stockDataHeader = [
     price: 2455.12,
     percentage: 12,
     decreaseByWon: 17,
+    index:0
     
   },
   {
@@ -13,6 +14,7 @@ export const stockDataHeader = [
     price: 5122.12,
     percentage: 10,
     decreaseByWon: 22,
+    index:1
   },
   {
     name: "네나무",
@@ -21,6 +23,7 @@ export const stockDataHeader = [
     price: 6455.12,
     percentage: 12,
     decreaseByWon: 450,
+    index:2
   },
   {
     name: "오나무",
@@ -28,6 +31,8 @@ export const stockDataHeader = [
     price: 4425.12,
     percentage: 22,
     decreaseByWon: 17,
+    index:3
+
   },
   {
     name: "육나무",
@@ -36,6 +41,7 @@ export const stockDataHeader = [
     price: 55.12,
     percentage: 2,
     decreaseByWon: 1,
+    index:4
   },
   {
     name: "칠나무",
@@ -43,6 +49,7 @@ export const stockDataHeader = [
     price: 4215.12,
     percentage: 2,
     decreaseByWon: 137,
+    index:5
   },
   {
     name: "팔나무",
@@ -50,6 +57,7 @@ export const stockDataHeader = [
     price: 825.12,
     percentage: 2,
     decreaseByWon: 327,
+    index:6
   },
   {
     name: "구나무",
@@ -57,6 +65,8 @@ export const stockDataHeader = [
     price: 11115.12,
     percentage: 7,
     decreaseByWon: 437,
+    index:7
+
   },
   {
     name: "십나무",
@@ -64,20 +74,172 @@ export const stockDataHeader = [
     price: 9935.12,
     percentage: 14,
     decreaseByWon: 1137,
+    index:8
   },
   {
     name: "토스",
     isPositive: true,
     price: 2455.12,
     percentage: 12,
+    index:9
   },
   {
     name: "비바",
     isPositive: true,
     price: 5122.12,
     percentage: 10,
+    index:10
+
   }
 ];
+
+
+export const stockDataHeaderDetail = [
+  {
+    name: "두나무",
+    isPositive: true,
+    price: 2455.12,
+    endPointWon: 132.22,
+    bounderyStart: 128.95,
+    bounderyEnd: 133.31,
+    totalPrice:1320000000000,
+    incomeByStock: 12,
+    incomeBySalary:20    ,
+    index:0
+
+  },
+  {
+    name: "세나무",
+    isPositive: true,
+    price: 2455.12,
+    endPointWon: 421.22,
+    bounderyStart: 1123328.95,
+    bounderyEnd: 123.31,
+    totalPrice:124252135,
+    incomeByStock: 21,
+    incomeBySalary:32   ,
+    index:1
+  },
+  {
+    name: "네나무",
+    isPositive: false,
+
+    price: 2455.12,
+    endPointWon: 5343.22,
+    bounderyStart: 434.95,
+    bounderyEnd: 1232.31,
+    totalPrice:511236,
+    incomeByStock: 23233,
+    incomeBySalary:43344    ,
+    index:2
+  },
+  {
+    name: "오나무",
+    isPositive: true,
+    price: 2455.12,
+    endPointWon: 988999.22,
+    bounderyStart: 4572.95,
+    bounderyEnd: 67585.31,
+    totalPrice:272526462,
+    incomeByStock: 77,
+    incomeBySalary:33    ,
+    index:3
+  },
+  {
+    name: "육나무",
+
+    isPositive: true,
+    price: 2455.12,
+    endPointWon: 132.22,
+    bounderyStart: 234646.95,
+    bounderyEnd: 4343234.31,
+    totalPrice:9456,
+    incomeByStock: 2234,
+    incomeBySalary:11    ,
+    index:4
+  },
+  {
+    name: "칠나무",
+    isPositive: false,
+    price: 2455.12,
+    endPointWon: 235533.22,
+    bounderyStart: 253534.95,
+    bounderyEnd: 5632234.31,
+    totalPrice:46364334554,
+    incomeByStock: 112,
+    incomeBySalary:3232    ,
+    index:5
+  },
+  {
+    name: "팔나무",
+    isPositive: true,
+    price: 2455.12,
+    endPointWon: 4344.22,
+    bounderyStart: 125348.95,
+    bounderyEnd: 1332132.31,
+    totalPrice:132000003200000,
+    incomeByStock: 123532,
+    incomeBySalary:3420    ,
+    index:6
+
+  },
+  {
+    name: "구나무",
+    isPositive: false,
+    price: 2455233.12,
+    endPointWon: 132312.22,
+    bounderyStart: 12448.95,
+    bounderyEnd: 134423.31,
+    totalPrice:1320002332000000,
+    incomeByStock: 123321,
+    incomeBySalary:2012  ,
+    index:7
+
+  },
+  {
+    name: "십나무",
+    isPositive: true,
+    price: 2455.12,
+    endPointWon: 53344.22,
+    bounderyStart: 433.95,
+    bounderyEnd: 23313.31,
+    totalPrice:1243,
+    incomeByStock: 544,
+    incomeBySalary:321    ,
+    index:8
+
+  },
+  {
+    name: "토스",
+    isPositive: true,
+    price: 2455.12,
+    endPointWon: 32.22,
+    bounderyStart: 8766.95,
+    bounderyEnd: 2131.31,
+    totalPrice:42343424,
+    incomeByStock: 122,
+    incomeBySalary:320 ,
+    index:9
+
+  },
+  {
+    name: "비바",
+    isPositive: true,
+    price: 2455.12,
+    endPointWon: 132332.22,
+    bounderyStart: 121238.95,
+    bounderyEnd: 1344123.31,
+    totalPrice:1322130000000000,
+    incomeByStock: 124,
+    incomeBySalary:203    ,
+    index:10
+
+  }
+];
+
+
+
+
 export const CategoryData =  {
   recentUpdate: ["두나무", '세나무', '네나무','팔나무'],
   mostPopular: ['토스', '비바','칠나무', '팔나무'],
