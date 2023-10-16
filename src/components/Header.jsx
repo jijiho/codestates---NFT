@@ -16,9 +16,9 @@ export default function Header() {
           </Link>
         </div>
         
-        <div className="flex gap-8 focus:outline-none focus:ring focus:ring-black">
+        <div className="flex gap-8">
             <div> 
-              <input type="text" placeholder="search" onChange={(e) => setSearch(e.target.value)} onFocus={() => setSearchFocus(true)} onBlur={() => setSearchFocus(false)} />
+              <input className="bg-gray-100 rounded-full focus:outline-none" type="text" placeholder=" search" onChange={(e) => setSearch(e.target.value)} onFocus={() => setSearchFocus(true)} onBlur={() => setSearchFocus(false)} />
               {searchFocus && <SearchResult searchTxt={search} />}
             </div>
             <div>
