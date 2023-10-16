@@ -5,7 +5,7 @@ export default function Header() {
   const [search, setSearch] = useState("Search");
   const [searchFocus, setSearchFocus] = useState(false);
   return (
-    <div className="border sticky border-b-black  w-screen">
+    <div className="border sticky border-b-black  w-screen z-10">
       <div className="h-16 flex justify-around items-center">
         <div className="w-24 ">
           <Link to="/">

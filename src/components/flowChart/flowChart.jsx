@@ -6,7 +6,7 @@ export default function FlowChart() {
 
 
 
-    <div className="overflow-hidden pt-4 -z-10">
+    <div className="overflow-hidden pt-4 ">
 
       <div className="flex">
         <div className="" ><ul className="flex  animate-infiRoll1 ">
