@@ -65,7 +65,6 @@ export default function FlowChart() {
           <li>
             <FlowChartEl stockInfo={stockDataHeader[8]}></FlowChartEl>
           </li>
-          
        </ul>
       </div>
       </div>
