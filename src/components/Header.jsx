@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
+import SearchResult from "./squareBlock/searchResult";
 export default function Header() {
+  const [search, setSearch] = useState("Search");
+  const [searchFocus, setSearchFocus] = useState(false);
   return (
-    <div className=" border sticky border-b-black  w-screen">
+    <div className="border sticky border-b-black  w-screen">
       <div className="h-16 flex justify-around items-center">
         <div className="w-24 ">
           <Link to="/">
@@ -12,17 +15,22 @@ export default function Header() {
             />
           </Link>
         </div>
+        
         <div className="flex gap-8">
-          <div>
-            <Link to={"/aa"}>돋보기</Link>
+            <div> 
+              <input className="bg-gray-100 rounded-full focus:outline-none" type="text" placeholder=" search" onChange={(e) => setSearch(e.target.value)} onFocus={() => setSearchFocus(true)} onBlur={() => setSearchFocus(false)} />
+              {searchFocus && <SearchResult searchTxt={search} />}
+            </div>
+            <div>
+              <Link to={"/aa"}>돋보기</Link>
+            </div>
+            <div>
+              <Link to={"/aa"}>상장예정 주식</Link>
+            </div>
+            <div>
+              <Link to={"/aa"}>내 포트폴리오</Link>
+            </div>
           </div>
-          <div>
-            <Link to={"/aa"}>상장예정 주식</Link>
-          </div>
-          <div>
-            <Link to={"/aa"}>내 포트폴리오</Link>
-          </div>
-        </div>
       </div>
     </div>
   );

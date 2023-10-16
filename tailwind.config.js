@@ -35,12 +35,7 @@ module.exports = {
           },
         },
       },
-      width:{
-        "200":
-          "200%"
-        
-      }
-      
+
     },
   },
   plugins: [],
