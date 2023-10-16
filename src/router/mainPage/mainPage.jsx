@@ -1,43 +1,46 @@
 import FlowChart from "../../components/flowChart/flowChart";
 import { useState } from "react";
 import RawStockBlock from "../../components/rawStockBlock/rawStockBlock";
-import { stockDataHeader, CategoryData } from "../../dataSet";
+
+import { stockDataHeader, CategoryData,dummyStocks } from "../../dataSet";
+
 import Category from "./component/categori";
+import SquareBlock from "../../components/squareBlock/squareBlock";
 
 export default function MainPage() {
-  const [stockData, setStockData] = useState(CategoryData.ipo);
+  const [stockData, setStockData] = useState(dummyStocks.recentUpdate);
+  const [selCategory, setSelCategory] = useState("recentUpdate");
   const callCategory = (e) => {
     //console.log(e.target.id+"클릭됨")
     if(e.target.id==="recentUpdate"){
-      setStockData(CategoryData.recentUpdate);
+      setStockData(dummyStocks.recentUpdate);
       setSelCategory("recentUpdate");
     } else if (e.target.id==="mostPopular"){
-      setStockData(CategoryData.mostPopular);
+      setStockData(dummyStocks.mostPopular);
       setSelCategory("mostPopular");
     } else if (e.target.id==="ipo"){
-      setStockData(CategoryData.ipo);
+      setStockData(dummyStocks.ipo);
       setSelCategory("ipo");
     }
     else if (e.target.id==="dividend"){
-      setStockData(CategoryData.dividend);
+      setStockData(dummyStocks.dividend);
       setSelCategory("dividend");
     }
     else if (e.target.id==="marketCap"){
-      setStockData(CategoryData.marketCap);
+      setStockData(dummyStocks.marketCap);
       setSelCategory("marketCap");
     }
   };
-  const [selCategory, setSelCategory] = useState("recentUpdate");
   const tenStock = stockDataHeader.slice(0, 9);
   
 
   return (
-    <div className="flex flex-col w-8/12 m-auto ">
+
+    <div className="flex flex-col w-8/12 m-auto mt-4">
       <FlowChart></FlowChart>
+      
+      <div className="w-full  flex gap-4 mt-8  ">
 
-
-    
-      <div className="w-full  flex gap-4 mt-8 ">
         <div className="w-8/12 border border-black px-6  rounded-2xl">
           <div className="text-2xl font-bold  pt-4 pb-3  ">
             <p className="">관심가질만한 종목들</p>
@@ -77,20 +80,26 @@ export default function MainPage() {
           </div>
         </div>
       </div>
-      <div className="w-full border border-black rounded-2xl flex gap-4 mt-8">
-        <div className="category">
-          <p className="m-4 text-2xl font-bold">카테고리</p>
-          <div className="flex gap-4 m-2">
-            <button className={`border-solid ${selCategory==="recentUpdate"?"font-bold":"nomal"} hover:bg-sky-100`} id="recentUpdate" onClick={(e)=>callCategory(e)}>최근에 등록된</button>
-            <button className={`border-solid ${selCategory==="mostPopular"?"font-bold":"nomal"} hover:bg-sky-100`} id="mostPopular" onClick={(e) => callCategory(e)}>거래량 많은</button>
-            <button className={`border-solid ${selCategory==="ipo"?"font-bold":"nomal"} hover:bg-sky-100`} id="ipo" onClick={(e) => callCategory(e)}>IPO를 앞둔</button>
-            <button className={`border-solid ${selCategory==="dividend"?"font-bold":"nomal"} hover:bg-sky-100`} id="dividend" onClick={(e) => callCategory(e)}>배당일을 앞둔</button>
-            <button className={`border-solid ${selCategory==="marketCap"?"font-bold":"nomal"} hover:bg-sky-100`} id="marketCap" onClick={(e) => callCategory(e)}>시가총액이 큰</button> 
+
+      <div className="w-full px-6 border border-black rounded-2xl flex gap-4 mt-8  min-h-max flex-col">
+        <div >
+          <p className="my-4 text-2xl font-bold">카테고리</p>
+          <div className="flex gap-4 my-4 ">
+            <button className={`border-solid rounded-md px-2 py-1 ${selCategory==="recentUpdate"?"font-bold":"nomal"} hover:bg-sky-100`} id="recentUpdate" onClick={(e)=>callCategory(e)}>최근에 등록된</button>
+            <button className={`border-solid rounded-md px-2 py-1 ${selCategory==="mostPopular"?"font-bold":"nomal"} hover:bg-sky-100`} id="mostPopular" onClick={(e) => callCategory(e)}>거래량 많은</button>
+            <button className={`border-solid rounded-md px-2 py-1 ${selCategory==="ipo"?"font-bold":"nomal"} hover:bg-sky-100`} id="ipo" onClick={(e) => callCategory(e)}>IPO를 앞둔</button>
+            <button className={`border-solid rounded-md px-2 py-1 ${selCategory==="dividend"?"font-bold":"nomal"} hover:bg-sky-100`} id="dividend" onClick={(e) => callCategory(e)}>배당일을 앞둔</button>
+            <button className={`border-solid rounded-md px-2 py-1 ${selCategory==="marketCap"?"font-bold":"nomal"} hover:bg-sky-100`} id="marketCap" onClick={(e) => callCategory(e)}>시가총액이 큰</button> 
           </div>
           <Category data={stockData}></Category>
           {/*카테고리를 누르면 해당 카테고리에 맞는 STO를 보여줘야 함*/}
         </div>
       </div>
+
+       
+
+
+
     </div>
   );
 }
