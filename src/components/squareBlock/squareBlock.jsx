@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function SquareBlock({ stock }) {
+  console.log(stock);
   return (
     <div className="border rounded-xl border-black w-2/12">
       <Link to={`stockDetail/${stock.name}`}>
