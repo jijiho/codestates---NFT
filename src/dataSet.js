@@ -65,6 +65,18 @@ export const stockDataHeader = [
     percentage: 14,
     decreaseByWon: 1137,
   },
+  {
+    name: "토스",
+    isPositive: true,
+    price: 2455.12,
+    percentage: 12,
+  },
+  {
+    name: "비바",
+    isPositive: true,
+    price: 5122.12,
+    percentage: 10,
+  }
 ];
 export const CategoryData =  {
   recentUpdate: ["두나무", '세나무', '네나무'],
