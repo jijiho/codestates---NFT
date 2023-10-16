@@ -2,14 +2,19 @@ import FlowChart from "../../components/flowChart/flowChart";
 import { useState } from "react";
 import RawStockBlock from "../../components/rawStockBlock/rawStockBlock";
 
-import { stockDataHeader, CategoryData,dummyStocks } from "../../dataSet";
+import { stockDataHeader, CategoryData,dummyStocks,stockDataHeaderDetail } from "../../dataSet";
 
 import Category from "./component/categori";
 import SquareBlock from "../../components/squareBlock/squareBlock";
+import { Link } from "react-router-dom";
 
 export default function MainPage() {
+  const tenStock = stockDataHeader.slice(0, 9);
+
   const [stockData, setStockData] = useState(dummyStocks.recentUpdate);
   const [selCategory, setSelCategory] = useState("recentUpdate");
+
+  const [currentDetail,setCurrentDetail]= useState(stockDataHeaderDetail[tenStock[1].index]);
   const callCategory = (e) => {
     //console.log(e.target.id+"클릭됨")
     if(e.target.id==="recentUpdate"){
@@ -31,8 +36,10 @@ export default function MainPage() {
       setSelCategory("marketCap");
     }
   };
-  const tenStock = stockDataHeader.slice(0, 9);
   
+  function changeDetail(data){
+    setCurrentDetail(stockDataHeaderDetail[data]);
+  }
 
   return (
 
@@ -54,8 +61,8 @@ export default function MainPage() {
           </div>
           {tenStock.map((el) => {
             return (
-              <div className="pb-4">
-                <RawStockBlock stockInfo={el}></RawStockBlock>
+              <div className="pb-4 ">
+                <RawStockBlock stockInfo={el} changeDetail={changeDetail} ></RawStockBlock>
               </div>
             );
           })}
@@ -67,15 +74,16 @@ export default function MainPage() {
               alt=""
             ></img>
             <div className="flex flex-col gap-3">
-              <div className="mt-2 text-2xl text-bold">토스</div>
-              <div>전일 종가 :$132.33</div>
-              <div>일일 변동폭 :$128.95 - $133.31</div>
-              <div>시가총액 :1.32조 USD</div>
-              <div>배당수익률 :12$</div>
-              <div>주가수익률 :20$</div>
-              <button className="border bg-red-200 py-1 mb-1 border-black self-end w-24 rounded-md">
+              <div className="mt-2 text-2xl text-bold">{currentDetail.name}</div>
+              <div>전일 종가 :${currentDetail.endPointWon}</div>
+              <div>일일 변동폭 :${currentDetail.bounderyStart} - ${currentDetail.bounderyEnd}</div>
+              <div>시가총액 :${currentDetail.totalPrice}</div>
+              <div>배당수익률 :{currentDetail.incomeBySalary}$</div>
+              <div>주가수익률 :{currentDetail.incomeByStock}$</div>
+              <Link className="border bg-red-200 py-1 mb-1 border-black self-end w-24 rounded-md" to={`/stockDetail/${currentDetail.index}`}>
+                <div className="text-center">
                 자세히 보기
-              </button>
+              </div></Link>
             </div>
           </div>
         </div>
