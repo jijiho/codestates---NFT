@@ -3,6 +3,7 @@ import Root from "./root";
 import MainPage from "./mainPage/mainPage";
 import StockDetail from "./stockDetailPage/stockDetail";
 import { loaderForDetail } from "./stockDetailPage/stockDetail";
+import OrderBook from "./orderBook/OrderBook";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
         element: <StockDetail />,
         loader: loaderForDetail,
       },
+      { path: "stockDetail/:stockId/orderBook", element: <OrderBook /> },
     ],
   },
 ]);
