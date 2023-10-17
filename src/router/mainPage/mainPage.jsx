@@ -5,8 +5,8 @@ import RawStockBlock from "../../components/rawStockBlock/rawStockBlock";
 import { stockDataHeader, CategoryData,dummyStocks,stockDataHeaderDetail } from "../../dataSet";
 
 import Category from "./component/categori";
-import SquareBlock from "../../components/squareBlock/squareBlock";
 import { Link } from "react-router-dom";
+import NewsBorder from "./component/news/newsBorder";
 
 export default function MainPage() {
   const tenStock = stockDataHeader.slice(0, 9);
@@ -102,12 +102,11 @@ export default function MainPage() {
           <Category data={stockData}></Category>
           {/*카테고리를 누르면 해당 카테고리에 맞는 STO를 보여줘야 함*/}
         </div>
+
       </div>
-
-       
-
-
-
+        
+        <NewsBorder />
+      
     </div>
   );
 }
