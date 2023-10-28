@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { stockDataHeaderDetail } from "../../dataSet";
+import { stockDataHeaderDetail} from "../../dataSet";
 import StockGraph from "./components/stockGraph";
 import JaemooGraph from "./components/jaemooGraph";
 import OctagonGraph from "./components/octagonGraph";
@@ -71,16 +71,16 @@ export default function StockDetail() {
           분야에서 고객의 비즈니스를 향상시키고 지속 가능한 성장을 돕는 데
           전념하고 있습니다.
         </p>
-        <p className="pb-2 border-b border-1 ">인덱스 번호:{}</p>
-        <p className="pb-2 border-b border-1 ">기업이름:{}</p>
-        <p className="pb-2 border-b border-1 ">사업자 번호:{}</p>
-        <p className="pb-2 border-b border-1 ">설립일:{}</p>
-        <p className="pb-2 border-b border-1 ">대표자:{}</p>
-        <p className="pb-2 border-b border-1 ">산업:{}</p>
-        <p className="pb-2 border-b border-1 ">기업형태:{}</p>
-        <p className="pb-2 border-b border-1 ">종업원수:{}</p>
-        <p className="pb-2 border-b border-1 ">본사주소:{}</p>
-        <p className="">홈페이지:{}</p>
+        <p className="pb-2 border-b border-1 ">인덱스 번호:{stockDetail.index}</p>
+        <p className="pb-2 border-b border-1 ">기업이름:{stockDetail.name}</p>
+        <p className="pb-2 border-b border-1 ">사업자 번호:{stockDetail.businessNum}</p>
+        <p className="pb-2 border-b border-1 ">설립일:{stockDetail.establishment}</p>
+        <p className="pb-2 border-b border-1 ">대표자:{stockDetail.ceo}</p>
+        <p className="pb-2 border-b border-1 ">산업:{stockDetail.industry}</p>
+        <p className="pb-2 border-b border-1 ">기업형태:{stockDetail.typeofCompany}</p>
+        <p className="pb-2 border-b border-1 ">종업원수:{stockDetail.Employees}</p>
+        <p className="pb-2 border-b border-1 ">본사주소:{stockDetail.companyAddress}</p>
+        <p className="">홈페이지:{stockDetail.websiteAddress}</p>
       </div>
       <div className="border border-black rounded-lg w-full mt-3 flex flex-col h-80 pl-4 py-4">
         <JaemooGraph></JaemooGraph>

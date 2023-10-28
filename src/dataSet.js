@@ -101,6 +101,14 @@ export const stockDataHeaderDetail = [
     incomeByStock: 12,
     incomeBySalary: 20,
     index: 0,
+    businessNum: 389930,
+    establishment: "YYYY-MM-DD",
+    ceo: "김두나무",
+    industry: "finTech",
+    typeofCompany: "유한회사",
+    Employees: 100,
+    companyAddress: "00시 00구 00로 00번길 00-00",
+    websiteAddress: "www.dunamu.com",
   },
   {
     name: "세나무",
@@ -674,3 +682,98 @@ export const stockDataForPortfolio = [
     priceThen: 123,
   },
 ];
+
+export const pentagonData = [
+  {
+    "taste": "Market Cap",
+    "now": 33,
+    "6 month ago": 114,
+    "1 year ago": 38
+  },
+  {
+    "taste": "Trading Volume",
+    "now": 53,
+    "6 month ago": 93,
+    "1 year ago": 72
+  },
+  {
+    "taste": "ROE",
+    "now": 27,
+    "6 month ago": 26,
+    "1 year ago": 92
+  },
+  {
+    "taste": "PER",
+    "now": 111,
+    "6 month ago": 94,
+    "1 year ago": 116
+  },
+  {
+    "taste": "PBR",
+    "now": 117,
+    "6 month ago": 83,
+    "1 year ago": 36
+  }
+]
+
+export const stockLineData = [
+  {
+    "id": "두나무",
+    "color": "hsl(217, 70%, 50%)",
+    "data": [
+      {
+        "x": "1",
+        "y": 4
+      },
+      {
+        "x": "2",
+        "y": 146
+      },
+      {
+        "x": "3",
+        "y": 122
+      },
+      {
+        "x": "4",
+        "y": 138
+      },
+      {
+        "x": "5",
+        "y": 157
+      },
+      {
+        "x": "6",
+        "y": 17
+      },
+      {
+        "x": "7",
+        "y": 294
+      },
+      {
+        "x": "8",
+        "y": 45
+      },
+      {
+        "x": "9",
+        "y": 86
+      },
+      {
+        "x": "10",
+        "y": 194
+      },
+      {
+        "x": "11",
+        "y": 42
+      },
+      {
+        "x": "12",
+        "y": 96
+      },
+      {
+        "x": "13",
+        "y": 4
+      }
+    ]
+  }
+]
+
