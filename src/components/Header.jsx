@@ -15,22 +15,29 @@ export default function Header() {
             />
           </Link>
         </div>
-        
+
         <div className="flex gap-8">
-            <div> 
-              <input className="bg-gray-100 rounded-full focus:outline-none" type="text" placeholder=" search" onChange={(e) => setSearch(e.target.value)} onFocus={() => setSearchFocus(true)} onBlur={() => setSearchFocus(false)} />
-              {searchFocus && <SearchResult searchTxt={search} />}
-            </div>
-            <div>
-              <Link to={"/aa"}>돋보기</Link>
-            </div>
-            <div>
-              <Link to={"/aa"}>상장예정 주식</Link>
-            </div>
-            <div>
-              <Link to={"/aa"}>내 포트폴리오</Link>
-            </div>
+          <div>
+            <input
+              className="bg-gray-100 rounded-full focus:outline-none"
+              type="text"
+              placeholder=" search"
+              onChange={(e) => setSearch(e.target.value)}
+              onFocus={() => setSearchFocus(true)}
+              onBlur={() => setSearchFocus(false)}
+            />
+            {searchFocus && <SearchResult searchTxt={search} />}
           </div>
+          <div>
+            <Link to={"/aa"}>돋보기</Link>
+          </div>
+          <div>
+            <Link to={"/aa"}>상장예정 주식</Link>
+          </div>
+          <div>
+            <Link to={"/myPortfolio"}>내 포트폴리오</Link>
+          </div>
+        </div>
       </div>
     </div>
   );
