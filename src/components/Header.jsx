@@ -1,9 +1,43 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchResult from "./squareBlock/searchResult";
+
+
 export default function Header() {
   const [search, setSearch] = useState("Search");
   const [searchFocus, setSearchFocus] = useState(false);
+  const [walletAddress, setWalletAddress] = useState("");
+  useEffect(() => {getCurrentWalletConneted();addWalletListener(); });
+
+  const getCurrentWalletConneted = async () => {
+    if(typeof window != "undefined" && typeof window.ethereum != "undefined"){
+      try{
+        const account = await window.ethereum.request({method: "eth_requestAccounts"});
+        if(account.length > 0){
+          setWalletAddress(account[0]);
+          console.log(account[0]);
+        }
+        else {
+          console.log("connectMetamask error")
+        }
+      } catch(err){
+        console.log(err);
+      }
+    } else {
+      console.log("No metamask");
+    }
+  }
+  const addWalletListener = async () => {
+    if(typeof window != "undefined" && typeof window.ethereum != "undefined"){
+      window.ethereum.on("accountsChanged", (accounts) => {
+        setWalletAddress(accounts[0]);
+        console.log(accounts[0]);
+      });
+    } else {
+      setWalletAddress("");
+      console.log("Please install metamask");
+    }
+  };
   return (
     <div className="border sticky border-b-black  w-screen z-10">
       <div className="h-16 flex justify-around items-center">
@@ -35,7 +69,7 @@ export default function Header() {
             <Link to={"/aa"}>상장예정 주식</Link>
           </div>
           <div>
-            <Link to={"/myPortfolio"}>내 포트폴리오</Link>
+            <Link to={"/myPortfolio"} onClick={getCurrentWalletConneted}>내 포트폴리오</Link>
           </div>
         </div>
       </div>
