@@ -35,7 +35,6 @@ export default function Header() {
       setWalletAddress("");
     }
   };
-
   return (
     <div className="border sticky border-b-black  w-screen z-10">
       <div className="h-16 flex justify-around items-center">

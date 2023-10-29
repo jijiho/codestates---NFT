@@ -6,6 +6,7 @@ export default function PortfolioPage() {
   const dataOwn = stockDataForPortfolio.slice(0, 4);
   const [walletAddress, setWalletAddress] = useState("");
   const [walletBalance, setWalletBalance] = useState(0);
+  const [chainId, setChainId] = useState(0);
   useEffect(() => {
     getCurrentWalletConneted();
     addWalletListener();
@@ -15,10 +16,12 @@ export default function PortfolioPage() {
     if(typeof window != "undefined" && typeof window.ethereum != "undefined"){
       try{
         const account = await window.ethereum.request({method: "eth_requestAccounts"});
+        const chainId = await window.ethereum.request({method: 'eth_chainId' });
         if(account.length > 0){
           setWalletAddress(account[0]);
           const balance = await provider.getBalance(account[0]);
           setWalletBalance(ethers.formatEther(balance));
+          setChainId(chainId);
         }
         else {
           console.log("connectMetamask error")
@@ -35,8 +38,13 @@ export default function PortfolioPage() {
       window.ethereum.on("accountsChanged", (accounts) => {
         setWalletAddress(accounts[0]);
       });
+      window.ethereum.on("chainChanged", async (chainId) => {
+        setChainId(chainId);
+        //setWalletBalance(??)
+      });
     } else {
       setWalletAddress("");
+      setChainId(0);
       setWalletBalance(0);
     }
   };
@@ -56,7 +64,7 @@ export default function PortfolioPage() {
         </div>
         <p className="text-xl pt-4">
           <span className=" font-bold">총자산:</span>
-          {userData.totalMoney}
+          {chainId}
         </p>
         <p className="text-xl pb-4 ">
           <span className=" font-bold">지갑 주소</span>
@@ -65,7 +73,7 @@ export default function PortfolioPage() {
 
         <div className="text-mg flex">
           <div className="w-1/2">
-            <span className="font-bold">보유 Klay:</span>
+            <span className="font-bold">보유 Token:</span>
             {walletBalance}
           </div>
           <div className="w-1/2">
