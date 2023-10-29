@@ -1,8 +1,45 @@
 import { stockDataForPortfolio } from "../../dataSet";
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
 
 export default function PortfolioPage() {
   const dataOwn = stockDataForPortfolio.slice(0, 4);
-
+  const [walletAddress, setWalletAddress] = useState("");
+  const [walletBalance, setWalletBalance] = useState(0);
+  useEffect(() => {
+    getCurrentWalletConneted();
+    addWalletListener();
+  }, [walletAddress]);
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  const getCurrentWalletConneted = async () => {
+    if(typeof window != "undefined" && typeof window.ethereum != "undefined"){
+      try{
+        const account = await window.ethereum.request({method: "eth_requestAccounts"});
+        if(account.length > 0){
+          setWalletAddress(account[0]);
+          const balance = await provider.getBalance(account[0]);
+          setWalletBalance(ethers.formatEther(balance));
+        }
+        else {
+          console.log("connectMetamask error")
+        }
+      } catch(err){
+        console.log(err);
+      }
+    } else {
+      console.log("No metamask");
+    }
+  }
+  const addWalletListener = async () => {
+    if(typeof window != "undefined" && typeof window.ethereum != "undefined"){
+      window.ethereum.on("accountsChanged", (accounts) => {
+        setWalletAddress(accounts[0]);
+      });
+    } else {
+      setWalletAddress("");
+      setWalletBalance(0);
+    }
+  };
   return (
     <div className="flex flex-col w-8/12 mx-auto">
       <div className="w-full border-black border-2 mt-12 px-12 py-12 rounded-lg flex flex-col gap-2">
@@ -23,13 +60,13 @@ export default function PortfolioPage() {
         </p>
         <p className="text-xl pb-4 ">
           <span className=" font-bold">지갑 주소</span>
-          {userData.walletAddress}
+          {walletAddress}
         </p>
 
         <div className="text-mg flex">
           <div className="w-1/2">
-            <span className="font-bold">지갑 주소:</span>
-            {userData.walletAddress}
+            <span className="font-bold">보유 Klay:</span>
+            {walletBalance}
           </div>
           <div className="w-1/2">
             <span className="font-bold">예상 배당금:</span>
@@ -132,10 +169,6 @@ const userData = {
   walletAddress: "asdf2r23d21wq23eZxzdsaf12e3ds",
   expectSalary: "12",
   totalMoney: "32",
-  walletAddress: "asdf2r23d21wq23eZxzdsaf12e3ds",
-  walletAddress: "asdf2r23d21wq23eZxzdsaf12e3ds",
-  walletAddress: "asdf2r23d21wq23eZxzdsaf12e3ds",
-  walletAddress: "asdf2r23d21wq23eZxzdsaf12e3ds",
 };
 
 // {
