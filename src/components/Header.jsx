@@ -1,9 +1,47 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import SearchResult from "./squareBlock/searchResult";
+
 export default function Header() {
   const [search, setSearch] = useState("Search");
   const [searchFocus, setSearchFocus] = useState(false);
+  const [walletAddress, setWalletAddress] = useState("");
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    getCurrentWalletConneted();
+    addWalletListener();
+  }, []);
+
+  const getCurrentWalletConneted = async () => {
+    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+      try {
+        const account = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        if (account != undefined && account.length > 0) {
+          setWalletAddress(account[0]);
+        } else {
+          console.log("connectMetamask error");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log("No metamask");
+    }
+  };
+
+  const addWalletListener = async () => {
+    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+      window.ethereum.on("accountsChanged", (accounts) => {
+        setWalletAddress(accounts[0]);
+      });
+    } else {
+      setWalletAddress("");
+    }
+  };
+
   return (
     <div className="border sticky border-b-black  w-screen z-10">
       <div className="h-16 flex justify-around items-center">
@@ -35,7 +73,17 @@ export default function Header() {
             <Link to={"/aa"}>상장예정 주식</Link>
           </div>
           <div>
-            <Link to={"/myPortfolio"}>내 포트폴리오</Link>
+            <button
+              onClick={() => {
+                if (walletAddress !== undefined && walletAddress !== "") {
+                  navigate("/myPortfolio");
+                } else {
+                  alert("메타마스크를 연결해주세요");
+                }
+              }}
+            >
+              내 포트폴리오
+            </button>
           </div>
         </div>
       </div>

@@ -1,7 +1,77 @@
 import { stockDataForPortfolio } from "../../dataSet";
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
 
 export default function PortfolioPage() {
   const dataOwn = stockDataForPortfolio.slice(0, 4);
+  const [walletAddress, setWalletAddress] = useState("");
+  const [walletBalance, setWalletBalance] = useState(0);
+  const [chainId, setChainId] = useState(0);
+  useEffect(() => {
+    getCurrentWalletConneted();
+    console.log(walletAddress);
+  }, []);
+
+  useEffect(() => {
+    addWalletListener();
+    console.log(chainId);
+    console.log(walletAddress);
+    console.log(walletBalance);
+  }, [walletAddress, chainId]);
+
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  const getCurrentWalletConneted = async () => {
+    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+      try {
+        const account = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        const chainId = await window.ethereum.request({
+          method: "eth_chainId",
+        });
+        if (account.length > 0) {
+          setWalletAddress(account[0]);
+          const balance = await provider.getBalance(account[0]);
+          setWalletBalance(ethers.formatEther(balance));
+          setChainId(chainId);
+        } else {
+          console.log("connectMetamask error");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log("No metamask");
+    }
+  };
+
+  const handleAccountChange = async (accounts) => {
+    setWalletAddress(accounts[0]);
+    const balance = await provider.getBalance(accounts[0]);
+    setWalletBalance(ethers.formatEther(balance));
+  };
+
+  const hadleChainChanged = async (chainId) => window.location.reload();
+
+  const addWalletListener = async () => {
+    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+      window.ethereum.on("accountsChanged", (accounts) => {
+        handleAccountChange(accounts);
+      });
+      window.ethereum.removeListener("accountsChanged", (accounts) => {
+        handleAccountChange(accounts);
+      });
+
+      window.ethereum.on("chainChanged", (chainId) => {
+        hadleChainChanged(chainId);
+      });
+
+      window.ethereum.removeListener("chainChanged", (chainId) => {
+        hadleChainChanged(chainId);
+      });
+    } else {
+    }
+  };
 
   return (
     <div className="flex flex-col w-8/12 mx-auto">
@@ -19,17 +89,17 @@ export default function PortfolioPage() {
         </div>
         <p className="text-xl pt-4">
           <span className=" font-bold">총자산:</span>
-          {userData.totalMoney}
+          {chainId}
         </p>
         <p className="text-xl pb-4 ">
           <span className=" font-bold">지갑 주소</span>
-          {userData.walletAddress}
+          {walletAddress}
         </p>
 
         <div className="text-mg flex">
           <div className="w-1/2">
-            <span className="font-bold">지갑 주소:</span>
-            {userData.walletAddress}
+            <span className="font-bold">보유 Token:</span>
+            {walletBalance}
           </div>
           <div className="w-1/2">
             <span className="font-bold">예상 배당금:</span>
@@ -132,10 +202,6 @@ const userData = {
   walletAddress: "asdf2r23d21wq23eZxzdsaf12e3ds",
   expectSalary: "12",
   totalMoney: "32",
-  walletAddress: "asdf2r23d21wq23eZxzdsaf12e3ds",
-  walletAddress: "asdf2r23d21wq23eZxzdsaf12e3ds",
-  walletAddress: "asdf2r23d21wq23eZxzdsaf12e3ds",
-  walletAddress: "asdf2r23d21wq23eZxzdsaf12e3ds",
 };
 
 // {
