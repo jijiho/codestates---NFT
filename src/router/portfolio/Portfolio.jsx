@@ -9,45 +9,70 @@ export default function PortfolioPage() {
   const [chainId, setChainId] = useState(0);
   useEffect(() => {
     getCurrentWalletConneted();
+    console.log(walletAddress);
+  }, []);
+
+  useEffect(() => {
     addWalletListener();
-  }, [walletAddress]);
+    console.log(chainId);
+    console.log(walletAddress);
+    console.log(walletBalance);
+  }, [walletAddress, chainId]);
+
   const provider = new ethers.BrowserProvider(window.ethereum);
   const getCurrentWalletConneted = async () => {
-    if(typeof window != "undefined" && typeof window.ethereum != "undefined"){
-      try{
-        const account = await window.ethereum.request({method: "eth_requestAccounts"});
-        const chainId = await window.ethereum.request({method: 'eth_chainId' });
-        if(account.length > 0){
+    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+      try {
+        const account = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        const chainId = await window.ethereum.request({
+          method: "eth_chainId",
+        });
+        if (account.length > 0) {
           setWalletAddress(account[0]);
           const balance = await provider.getBalance(account[0]);
           setWalletBalance(ethers.formatEther(balance));
           setChainId(chainId);
+        } else {
+          console.log("connectMetamask error");
         }
-        else {
-          console.log("connectMetamask error")
-        }
-      } catch(err){
+      } catch (err) {
         console.log(err);
       }
     } else {
       console.log("No metamask");
     }
-  }
+  };
+
+  const handleAccountChange = async (accounts) => {
+    setWalletAddress(accounts[0]);
+    const balance = await provider.getBalance(accounts[0]);
+    setWalletBalance(ethers.formatEther(balance));
+  };
+
+  const hadleChainChanged = async (chainId) => window.location.reload();
+
   const addWalletListener = async () => {
-    if(typeof window != "undefined" && typeof window.ethereum != "undefined"){
+    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
       window.ethereum.on("accountsChanged", (accounts) => {
-        setWalletAddress(accounts[0]);
+        handleAccountChange(accounts);
       });
-      window.ethereum.on("chainChanged", async (chainId) => {
-        setChainId(chainId);
-        //setWalletBalance(??)
+      window.ethereum.removeListener("accountsChanged", (accounts) => {
+        handleAccountChange(accounts);
+      });
+
+      window.ethereum.on("chainChanged", (chainId) => {
+        hadleChainChanged(chainId);
+      });
+
+      window.ethereum.removeListener("chainChanged", (chainId) => {
+        hadleChainChanged(chainId);
       });
     } else {
-      setWalletAddress("");
-      setChainId(0);
-      setWalletBalance(0);
     }
   };
+
   return (
     <div className="flex flex-col w-8/12 mx-auto">
       <div className="w-full border-black border-2 mt-12 px-12 py-12 rounded-lg flex flex-col gap-2">

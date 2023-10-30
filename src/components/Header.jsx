@@ -7,6 +7,7 @@ export default function Header() {
   const [searchFocus, setSearchFocus] = useState(false);
   const [walletAddress, setWalletAddress] = useState("");
   let navigate = useNavigate();
+
   useEffect(() => {
     getCurrentWalletConneted();
     addWalletListener();
