@@ -20,16 +20,31 @@ export default function GetMyNFTs({address}) {
   }, []);
 
 
-
   return(
     <div>
       <div>
         {nfts.map((nft) => (
           <div key={nft.id}>
-            <img src={nft.image} alt={nft.name} className="w-12" />
-            <p>{nft.name}</p>
-            <p>{nft.description}</p>
-            <button onClick={() => handleTx(nft.tx)}>View on Klaytnscope</button>
+            <div className="flex items-center mb-8">
+              <img src={nft.image} alt={nft.name} className="w-36 ml-4 mr-4" />
+              <div>
+                <p>{nft.name}</p>
+                {nft.description}
+              </div>
+              <button onClick={() => handleTx(nft.transactionHash)} className="ml-8 hover:text-blue-600">{nft.transactionHash.slice(0,6)}...{nft.transactionHash.slice(
+                            nft.transactionHash.length - 5,
+                            nft.transactionHash.length - 1
+                          )}</button>
+              <button onClick={() => handleAddress(nft.contractAddress)} className="ml-8 hover:text-blue-600">
+              {nft.contractAddress.slice(0, 6)}...
+                          {nft.contractAddress.slice(
+                            nft.contractAddress.length - 5,
+                            nft.contractAddress.length - 1
+                          )}
+              </button>
+              <div className="ml-4">{nft.createdAt}</div>
+              <div className="ml-12">{nft.tokenId}</div>
+            </div>
           </div>
         ))}
       </div>

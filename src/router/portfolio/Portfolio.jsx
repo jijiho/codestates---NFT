@@ -131,12 +131,12 @@ export default function PortfolioPage() {
         <p className="text-2xl font-bold my-4">보유 STO</p>
         <div className="flex flex-col">
           <div className="flex font-bold text-xl justify-between  text-center my-2">
-            <div className="w-1/6">종목명</div>
-            <div className="w-1/6">잔고 수량</div>
-            <div className="w-1/6">매입가</div>
-            <div className="w-1/6">현재가</div>
-            <div className="w-1/6">평가손익</div>
-            <div className="w-1/6">수익률</div>
+            <div className="w-1/6">image</div>
+            <div className="w-1/6">name  description</div>
+            <div className="w-1/6">transaction</div>
+            <div className="w-1/6">contractAddress</div>
+            <div className="w-1/6">time</div>
+            <div className="w-1/6">tokenId</div>
           </div>
           <div className="flex flex-col text-center">
             {
