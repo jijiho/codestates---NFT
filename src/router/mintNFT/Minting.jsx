@@ -3,7 +3,7 @@ import { jsonToPinata } from '../../api/pinataCall.js';
 import { uploadImgToPinata } from '../../api/pinataCall.js';
 import {AttendABI, AttendCA, getAbiData} from '../../contract/getAbiData.js';
 import {ethers} from 'ethers';
-const fs = require('fs')
+
 const FormData = require('form-data')
 
 export default function MintingPage() {
@@ -26,19 +26,24 @@ export default function MintingPage() {
 
   const mintNFT = async () => {
     // 1. 이미지를 Pinata에 업로드합니다.
-    const formData = new FormData();
-    formData.append("file", selectedImage);
-    const result = await uploadImgToPinata(formData);
+    // const formData = new FormData();
+    // formData.append("file", selectedImage);
+    // const result = await uploadImgToPinata(formData);
     // 2. NFT 메타데이터를 작성합니다.
-    const metadata = {
-      name: nftName,
-      description: nftDescription,
-      image: result,
-     };
+    // const metadata = {
+    //   name: nftName,
+    //   description: nftDescription,
+    //   image: result,
+    //  };
     // jsonToPinata(metadata);
 
     // 3. NFT를 생성합니다.
+    // const tokenURI = await jsonToPinata(metadata);
     const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(AttendCA, AttendABI, signer);
+    
+    
   };
 
 
