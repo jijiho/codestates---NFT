@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { jsonToPinata } from '../../api/pinataCall.js';
 import { uploadImgToPinata } from '../../api/pinataCall.js';
-import { minting } from '../../contract/minting.js';
-// import {AttendABI, AttendCA, getAbiData} from '../../contract/getAbiData.js';
+import { ethers } from 'ethers';
+import { minting, sendSignTx } from '../../contract/minting.js';
 
 
 const FormData = require('form-data')
@@ -35,16 +35,20 @@ export default function MintingPage() {
       name: nftName,
       description: nftDescription,
       image: ipfsHash,
-     };
+    };
     jsonToPinata(metadata);
 
     // 3. NFT를 생성합니다.
     const tokenURI = await jsonToPinata(metadata);
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(AttendCA, AttendABI, signer);
-    
-    
+    const address = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    console.log(address[0]); 
+    if (tokenURI) {
+      const result = await minting(tokenURI, address[0]);
+      if(result.hash){
+        await result.wait();
+        sendSignTx(result.hash);
+      };
+    };
   };
 
 

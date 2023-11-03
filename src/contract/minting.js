@@ -4,7 +4,7 @@ import {
     REACT_APP_PRIVATE_KEY,
   } from "../config.js";
   import CryptoJS from "crypto-js";
-
+import {ethers} from "ethers";
 import { AttendCA, AttendABI } from "./getAbiData.js";
 // caver
 import Caver from "caver-js";
@@ -21,9 +21,7 @@ export const minting = async (tokenURI, to) => {
         from: REACT_APP_ADDRESS,
       });
   
-    console.log("예상 실행 가스비 견적 : ", estimate);
     const result = await SendTransactionNoValue(mint, AttendCA, estimate);
-    console.log("트랜잭션 해시 : ", result.hash);
     return result;
   };
   
